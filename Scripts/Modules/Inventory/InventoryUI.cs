@@ -226,5 +226,15 @@ namespace Devdog.InventoryPro
             return false; // Didn't override anything
         }
 
+        public override bool SetItem(uint slot, InventoryItemBase item)
+        {
+            if (item != null)
+            {
+                item.transform.SetParent(containerItemsParent);
+            }
+
+            return base.SetItem(slot, item);
+        }
+
     }
 }

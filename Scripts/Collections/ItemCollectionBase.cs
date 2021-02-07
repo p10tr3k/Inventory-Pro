@@ -301,7 +301,14 @@ namespace Devdog.InventoryPro
         /// <summary>
         /// The parent of the items in this collection
         /// </summary>
-        protected Transform containerItemsParent;
+        [SerializeField]
+        private Transform _containerItemsParent;
+
+        public Transform containerItemsParent
+        {
+            get { return _containerItemsParent; }
+            private set { _containerItemsParent = value; }
+        }
 
         /// <summary>
         /// The max size of the collection, this many empty item slots will be created.

@@ -21,12 +21,15 @@ namespace Devdog.InventoryPro
         [Required]
         public UIWindow toSyncToWindow;
 
+        //[Required]
+        //public RectTransform toSyncToContainer;
+
         [Required]
-        public RectTransform toSyncToContainer;
+        public ItemCollectionBase toSyncTo;
 
 
-//        private Transform _fromParent;
-//        private int _fromChildIndex;
+        //        private Transform _fromParent;
+        //        private int _fromChildIndex;
 
         protected virtual void Awake()
         {
@@ -72,7 +75,7 @@ namespace Devdog.InventoryPro
                 var c = item as UnityEngine.Component;
                 if (c != null)
                 {
-                    c.transform.SetParent(toSyncToContainer);
+                    c.transform.SetParent(toSyncTo.containerItemsParent);
                     InventoryUtility.ResetTransform(c.transform);
                 }
             }
@@ -88,7 +91,10 @@ namespace Devdog.InventoryPro
 
         private void RebuildToLayout(uint slot, InventoryItemBase item)
         {
-            LayoutRebuilder.MarkLayoutForRebuild(toSyncToContainer);
+            if (toSyncTo.container is RectTransform)
+            {
+                LayoutRebuilder.MarkLayoutForRebuild(toSyncTo.container as RectTransform);
+            }
         }
     }
 }

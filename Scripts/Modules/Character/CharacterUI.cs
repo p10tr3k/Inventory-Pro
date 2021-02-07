@@ -299,6 +299,11 @@ namespace Devdog.InventoryPro
                 }
             }
 
+            if (item != null)
+            {
+                item.transform.SetParent(containerItemsParent);
+            }
+
             return base.SetItem(slot, item);
         }
 
