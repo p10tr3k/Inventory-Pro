@@ -92,7 +92,7 @@ namespace Devdog.InventoryPro
                     if (deserializedItems[i] != null)
                     {
                         deserializedItems[i].gameObject.SetActive(false);
-                        deserializedItems[i].transform.SetParent(collection.container);
+                        deserializedItems[i].transform.SetParent(collection.containerItemsParent);
                     }
                 }
             }
