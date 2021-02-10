@@ -496,6 +496,27 @@ namespace Devdog.InventoryPro
             return list;
         }
 
+        public virtual void SetUpTriggerComponents()
+        {
+            gameObject.GetOrAddComponent<ItemTrigger>();
+            gameObject.GetOrAddComponent<ItemTriggerInputHandler>();
+        }
+
+        public virtual void SetUpAdditionalComponents()
+        {
+            if (gameObject.GetComponent<SpriteRenderer>() == null)
+            {
+                // This is not a 2D object
+                if (gameObject.GetComponent<Collider>() == null)
+                    gameObject.AddComponent<BoxCollider>();
+
+                var sphereCollider = gameObject.GetOrAddComponent<SphereCollider>();
+                sphereCollider.isTrigger = true;
+                sphereCollider.radius = 1f;
+
+                gameObject.GetOrAddComponent<Rigidbody>();
+            }
+        }
 
         /// <summary>
         /// Returns a list of usabilities for this item, what can it do?

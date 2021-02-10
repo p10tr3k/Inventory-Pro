@@ -107,20 +107,8 @@ namespace Devdog.InventoryPro.Editors
 				comp.ID = (crudList.Count > 0) ? crudList.Max(o => o.ID) + 1 : 0;
 				EditorUtility.SetDirty(comp); // To save it.
 
-				instanceObj.GetOrAddComponent<ItemTrigger>();
-				instanceObj.GetOrAddComponent<ItemTriggerInputHandler>();
-				if (instanceObj.GetComponent<SpriteRenderer>() == null)
-				{
-					// This is not a 2D object
-					if (instanceObj.GetComponent<Collider>() == null)
-						instanceObj.AddComponent<BoxCollider>();
-
-					var sphereCollider = instanceObj.GetOrAddComponent<SphereCollider>();
-					sphereCollider.isTrigger = true;
-					sphereCollider.radius = 1f;
-
-					instanceObj.GetOrAddComponent<Rigidbody>();
-				}
+				comp.SetUpTriggerComponents();
+				comp.SetUpAdditionalComponents();
 
 				/*
                 //var prefab = PrefabUtility.CreatePrefab(prefabPath, instanceObj);
