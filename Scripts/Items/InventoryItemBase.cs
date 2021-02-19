@@ -516,7 +516,11 @@ namespace Devdog.InventoryPro
 
                 gameObject.GetOrAddComponent<Rigidbody>();
             }
+
+            SetUpAdditionalComponentsPartial();
         }
+
+        partial void SetUpAdditionalComponentsPartial();
 
         /// <summary>
         /// Returns a list of usabilities for this item, what can it do?
